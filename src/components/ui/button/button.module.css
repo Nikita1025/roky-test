@@ -1,0 +1,99 @@
+.text,
+.default {
+  all: unset;
+
+  cursor: pointer;
+  user-select: none;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 100px;
+  padding: 0.375rem 1.5rem;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #fff;
+  text-decoration: none;
+
+  background-color: #3ca779;
+  border-radius: 12px;
+
+  transition: 0.3s;
+}
+
+.default:hover {
+  background: #2e7f5c;
+  transition: 0.3s;
+}
+
+.default:active {
+  background: #49c28e;
+  transition: 0.3s;
+}
+
+.text {
+  color: #3ca779;
+  background-color: unset;
+  border: 1px solid #3ca779;
+}
+
+.text:hover {
+  background: #1e1e25;
+  transition: 0.3s;
+}
+
+.text:active {
+  background: #49c28e;
+  border: 1px solid #49c28e;
+  transition: 0.3s;
+}
+
+@media (width <= 768px) {
+  .unActiveProfile,
+  .unActive {
+    width: 50%;
+    max-width: unset;
+    padding: 12px 0;
+    line-height: unset;
+  }
+
+  .activeProfile,
+  .active {
+    width: 50%;
+    max-width: unset;
+    padding: 12px 0;
+    line-height: unset;
+  }
+
+  .button-with-icon {
+    display: flex;
+    justify-content: space-between;
+
+    width: 93%;
+    padding: 8px 8px 8px 16px;
+
+    border-radius: 12px;
+  }
+
+  .vector {
+    width: 44px;
+    height: 44px;
+  }
+
+  .error:hover {
+    color: #df4343;
+    background: unset;
+  }
+
+  .error:active {
+    color: #fff;
+    background: rgb(187 46 46 / 81%);
+    border: 1px solid rgb(187 46 46 / 81%);
+    transition: 0.3s;
+  }
+}
