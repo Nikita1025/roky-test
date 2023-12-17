@@ -13,7 +13,9 @@ export const newsApi = {
   },
 
   async oneNews(id: string) {
-    const { data } = await baseApi.get<any>(`${id}?api-key=${apiKey}`)
+    const { data } = await baseApi.get<any>(
+      `${id}?show-fields=starRating,headline,thumbnail,short-url&api-key=${apiKey}`
+    )
 
     return data
   },

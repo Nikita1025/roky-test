@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.0.0",
-    "@reduxjs/toolkit": "^2.0.1",
+    "@reduxjs/toolkit": "^1.9.7",
     "@types/node": "20.10.4",
     "@types/react": "18.2.45",
     "@types/react-dom": "18.2.18",
@@ -21,7 +21,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^9.0.4",
-    "typescript": "*"
+    "typescript": "5.2.2"
   },
   "devDependencies": {
     "@conarti/eslint-plugin-feature-sliced": "^1.0.5",

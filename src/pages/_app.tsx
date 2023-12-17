@@ -1,3 +1,4 @@
+// eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { Provider } from 'react-redux'
 
 import { wrapper } from '@/service/store'
@@ -7,6 +8,12 @@ import { AppProps } from 'next/app'
 import '@/styles/globals.css'
 
 function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const { props, store } = wrapper.useWrappedStore(pageProps)
+
+  return (
+    <Provider store={store}>
+      <Component {...props.pageProps} />
+    </Provider>
+  )
 }
-export default wrapper.withRedux(App)
+export default App

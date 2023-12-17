@@ -1,31 +1,26 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from 'react-redux'
 
+import { baseApi } from '@/api/baseApi'
 // eslint-disable-next-line import/namespace
 import { newsReducer } from '@/service/news-slice'
-import { oneNewsReducer } from '@/service/one-news-slice'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
+import { configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 
-const makeStore = configureStore({
+export const store = configureStore({
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([baseApi.middleware]),
   reducer: {
+    [baseApi.reducerPath]: baseApi.reducer,
     news: newsReducer,
-    // oneNews: oneNewsReducer,
   },
 })
 
-const makeStoreTS = () =>
-  configureStore({
-    reducer: {
-      news: newsReducer,
-      // oneNews: oneNewsReducer,
-    },
-  })
+export const makeStore = () => store
 
-export type AppDispatch = typeof makeStore.dispatch
-export type AppRootStateType = ReturnType<typeof makeStoreTS>
-export const useAppDispatch = () => useDispatch<any>()
+export type AppStore = ReturnType<typeof makeStore>
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
-export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
-export const wrapper = createWrapper<AppRootStateType>(makeStore, { debug: true })
+export const wrapper = createWrapper<AppStore>(makeStore, { debug: true })
