@@ -42,3 +42,9 @@ export type News = {
   webTitle: string
   webUrl: string
 }
+
+export type RequestNews = {
+  currentPage: number
+  filters?: string
+  search?: string
+}

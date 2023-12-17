@@ -1,11 +1,19 @@
 import baseApi, { apiKey } from '@/api/base-api'
-import { ResponseNews } from '@/service/types'
+import { RequestNews, ResponseNews } from '@/service/types'
 
 export const newsApi = {
-  async news(search: string) {
+  async news({ currentPage, filters, search }: RequestNews) {
     const { data } = await baseApi.get<ResponseNews>(
-      `/search?q=${search}&show-fields=starRating,headline,thumbnail,short-url&api-key=${apiKey}`
+      `/search?q=${search}&page-size=${currentPage}&from-date=2010-01-01&show-fields=starRating,headline,thumbnail,short-url&order-by=${
+        filters || 'relevance'
+      }&api-key=${apiKey}`
     )
+
+    return data
+  },
+
+  async oneNews(id: string) {
+    const { data } = await baseApi.get<any>(`${id}?api-key=${apiKey}`)
 
     return data
   },
