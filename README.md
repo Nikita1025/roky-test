@@ -1,4 +1,4 @@
-## <a href="https://nikita1025.github.io/historic-events/" target="_blank">Historic events</a>
+## <a href="https://roky-test.vercel.app/" target="_blank">Roky</a>
 
 Приложение состоит из главной страницы, отображающей карточки новостей, при клике на какую-либо карточку должна открываться соответствующая страница новости.
 
