@@ -1,17 +1,15 @@
-import { apiKey, newsApi } from '@/api'
-import baseApi from '@/api/base-api'
+import { newsApi } from '@/api'
+import { AsyncThunkConfig, DataResponse, News, RequestNews } from '@/service/types'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { AsyncThunkConfig, News, RequestNews, ResponseNews } from './types'
-
 interface newsState {
-  news?: News[]
-  oneNews: any
+  news: News[]
+  status: 'loading' | 'successfully'
 }
 
 const initialState: newsState = {
   news: [],
-  oneNews: {},
+  status: 'successfully',
 }
 
 const slice = createSlice({
@@ -24,20 +22,29 @@ const slice = createSlice({
   },
   initialState,
   name: 'news',
-  reducers: {},
+  reducers: {
+    setStatus: (state, action) => {
+      state.status = action.payload
+    },
+  },
 })
 
-export const getNewsTC = createAsyncThunk<any, RequestNews, AsyncThunkConfig>(
+export const getNewsTC = createAsyncThunk<DataResponse, RequestNews, AsyncThunkConfig>(
   'news/getNews',
   async ({ currentPage, filters, search }, { dispatch }) => {
+    dispatch(setStatus('loading'))
     try {
       const { response } = await newsApi.news({ currentPage, filters, search })
 
+      dispatch(setStatus('successfully'))
+
       return response
     } catch (e) {
-      console.log(e)
+      dispatch(setStatus('successfully'))
     }
   }
 )
+
+const { setStatus } = slice.actions
 
 export const newsReducer = slice.reducer

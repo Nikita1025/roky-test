@@ -1,11 +1,6 @@
 'use client'
-
-// eslint-disable-next-line no-duplicate-imports
-
-import { getProfile, getRunningQueriesThunk, useGetProfileQuery } from '@/api/baseApi'
+import { getProfile, getRunningQueriesThunk, useGetProfileQuery } from '@/api/baseApiSSR'
 import { OneNewsPage } from '@/components/newsPage/newsPage'
-// eslint-disable-next-line import/namespace
-
 import { wrapper } from '@/service/store'
 import { useRouter } from 'next/dist/client/router'
 
@@ -20,12 +15,12 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async cont
   }
 })
 
-const Id = () => {
+const Page = () => {
   const router = useRouter()
 
-  const { data } = useGetProfileQuery(router.query.id)
+  const { data } = useGetProfileQuery(router.query.id!.toString())
 
-  return <OneNewsPage data={data} />
+  return <OneNewsPage data={data?.response.content!} />
 }
 
-export default Id
+export default Page

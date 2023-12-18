@@ -1,8 +1,7 @@
 import React from 'react'
 
+import { NoImage } from '@/assets/icon/noImage'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import s from './news.module.css'
@@ -24,9 +23,11 @@ export const News = ({ id, image, time, title }: NewsType) => {
 
   return (
     <div className={s.container}>
-      <img alt={'ar'} className={s.image} height={250} src={image} width={325} />
+      <div className={s.image_block}>
+        {image ? <img className={s.image} src={image} /> : <NoImage className={s.image} />}
+      </div>
       <div className={s.content_block}>
-        <div>
+        <div className={s.text_block}>
           <p className={s.time}>{time}</p>
           <p className={s.title}>{title}</p>
         </div>

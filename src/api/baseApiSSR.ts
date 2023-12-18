@@ -1,9 +1,10 @@
 import { apiKey } from '@/api/base-api'
+import { ResponseOneNews } from '@/service/types'
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 
-export const baseApi = createApi({
+export const baseApiSSR = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
   endpoints: () => ({}),
 
@@ -15,9 +16,9 @@ export const baseApi = createApi({
   reducerPath: 'baseApi',
 })
 
-export const profileApi = baseApi.injectEndpoints({
+export const oneNewsApi = baseApiSSR.injectEndpoints({
   endpoints: builder => ({
-    getProfile: builder.query<any, any>({
+    getProfile: builder.query<ResponseOneNews, string>({
       query: id => ({
         method: 'GET',
         url: `${id}?show-fields=all&api-key=${apiKey}`,
@@ -29,6 +30,6 @@ export const profileApi = baseApi.injectEndpoints({
 export const {
   useGetProfileQuery,
   util: { getRunningQueriesThunk },
-} = profileApi
+} = oneNewsApi
 
-export const { getProfile } = profileApi.endpoints
+export const { getProfile } = oneNewsApi.endpoints

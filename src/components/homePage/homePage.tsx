@@ -1,11 +1,10 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
-import { News } from '@/components/homePage/news/news'
+import { News } from '@/components/homePage/news'
 import { Button } from '@/components/ui/button'
 import { SelectBox } from '@/components/ui/selectBox'
-import { getNewsTC } from '@/service/news-slice'
-import { useAppDispatch, useAppSelector } from '@/service/store'
+import { getNewsTC, useAppDispatch, useAppSelector } from '@/service'
 
 import s from './homePage.module.css'
 const options = [
@@ -27,6 +26,7 @@ export const HomePage = () => {
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value)
+    setCurrentPage(10)
   }
   const onClickFind = () => {
     dispatch(getNewsTC({ currentPage, filters, search }))
@@ -48,7 +48,6 @@ export const HomePage = () => {
       const { clientHeight, scrollHeight, scrollTop } = document.documentElement
 
       if (scrollTop + clientHeight >= scrollHeight) {
-        // Достигнут конец страницы - загружаем новые новости
         setCurrentPage(prevPage => prevPage + 10)
       }
     }
@@ -63,16 +62,20 @@ export const HomePage = () => {
   return (
     <div className={s.container}>
       <div className={s.search_block}>
-        <input className={s.input} onChange={onChangeHandler} placeholder={'Найти по слову'} />
+        <input className={s.input} onChange={onChangeHandler} placeholder={'Search by word'} />
         <Button onClick={onClickFind} variant={'default'}>
           Find
         </Button>
         <div className={s.select_block}>
-          <SelectBox onValueChange={changeCurrentPageHandler} options={options} />
+          <SelectBox
+            onValueChange={changeCurrentPageHandler}
+            options={options}
+            placeholder={currentPage.toString()}
+          />
           <SelectBox
             onValueChange={changeFilterHandler}
             options={optionFilters}
-            placeholder={'По дате'}
+            placeholder={'Date'}
           />
         </div>
       </div>

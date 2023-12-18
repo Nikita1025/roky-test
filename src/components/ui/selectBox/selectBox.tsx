@@ -3,7 +3,7 @@ import React, { ReactElement, ReactNode, useState } from 'react'
 import { VectorIcon } from '@/assets/icon/vectorIcon'
 import * as Select from '@radix-ui/react-select'
 
-import styles from './SelectBox.module.css'
+import styles from './selectBox.module.css'
 
 export type SelectProps = {
   children?: ReactNode
@@ -42,10 +42,6 @@ export const SelectBox = ({
     label: styles.label,
     line: styles.line,
     placeholder: styles.placeholder,
-    scrollAreaRoot: styles.scrollAreaRoot,
-    scrollAreaScrollbar: styles.scrollAreaScrollbar,
-    scrollAreaThumb: styles.scrollAreaThumb,
-    scrollAreaViewport: styles.scrollAreaViewport,
     selectBox: styles.selectBox,
     selectContent: styles.selectContent,
     selectIcon: styles.selectIcon,

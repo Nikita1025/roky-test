@@ -1,6 +1,7 @@
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { Provider } from 'react-redux'
 
+import { ProgressBar } from '@/components/ui/progressBar/progressBar'
 import { wrapper } from '@/service/store'
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { AppProps } from 'next/app'
@@ -12,7 +13,9 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Component {...props.pageProps} />
+      <ProgressBar>
+        <Component {...props.pageProps} />
+      </ProgressBar>
     </Provider>
   )
 }

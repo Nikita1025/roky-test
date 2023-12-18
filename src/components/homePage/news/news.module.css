@@ -5,9 +5,18 @@
   border-radius: 5px;
 }
 
+.image_block {
+  overflow: hidden;
+  width: 100%;
+}
+
 .image {
   cursor: pointer;
+
+  width: 325px;
+  height: 250px;
   margin-bottom: 15px;
+
   transition: transform 0.3s ease;
 }
 
@@ -41,4 +50,47 @@
 
   height: 165px;
   padding: 10px;
+}
+
+.text_block {
+  width: 100%;
+}
+
+@media (width >= 300px) and (width <= 500px) {
+  .news_block {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .input {
+    width: 100%;
+    height: 100%;
+    margin-right: 0;
+  }
+
+  .search_block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (width >= 501px) and (width <= 768px) {
+  .news_block {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (width <= 768px) {
+  .container {
+    max-width: unset;
+  }
+
+  .content_block {
+    height: unset;
+  }
+
+  .image {
+    width: 100%;
+  }
 }

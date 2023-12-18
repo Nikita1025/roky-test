@@ -1,0 +1,1 @@
+export { OneNewsPage } from './newsPage'

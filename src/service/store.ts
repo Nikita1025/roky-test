@@ -1,15 +1,15 @@
 import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from 'react-redux'
 
-import { baseApi } from '@/api/baseApi'
+import { baseApiSSR } from '@/api/baseApiSSR'
 // eslint-disable-next-line import/namespace
 import { newsReducer } from '@/service/news-slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 
 export const store = configureStore({
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([baseApi.middleware]),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([baseApiSSR.middleware]),
   reducer: {
-    [baseApi.reducerPath]: baseApi.reducer,
+    [baseApiSSR.reducerPath]: baseApiSSR.reducer,
     news: newsReducer,
   },
 })
