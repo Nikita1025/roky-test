@@ -1,0 +1,93 @@
+.label {
+  height: 24px;
+
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.selectIcon {
+  margin-right: 5px;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}
+
+.selectBox {
+  cursor: pointer;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 150px;
+  height: 36px;
+  padding-left: 10px;
+
+  line-height: 24px;
+  text-align: left;
+  letter-spacing: 0;
+
+  background-color: unset;
+  border: 1px solid #3ca779;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: none;
+}
+
+.selectBox:hover {
+  background: #1e1e25;
+  transition: 0.3s;
+}
+
+.selectBox:active {
+  background: #49c28e;
+  border: 1px solid #49c28e;
+  transition: 0.3s;
+}
+
+.selectContent {
+  width: 150px;
+  background-color: #171717;
+  border: 1px solid #3ca779;
+}
+
+.value {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.placeholder {
+  font-size: 16px;
+  font-weight: 500;
+  color: #d6d7e0;
+  opacity: 0.5;
+}
+
+.line {
+  cursor: pointer;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  padding: 6px 12px;
+
+  line-height: 24px;
+  letter-spacing: 0;
+
+  outline: none;
+
+  transition: 0.2s ease-out;
+}
+
+.line:hover {
+  color: #49c28e;
+  background-color: #2e7f5c;
+  border-radius: 2px;
+}

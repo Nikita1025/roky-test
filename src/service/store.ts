@@ -1,18 +1,25 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-import { newsReducer } from '@/service/news-slice'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-
-const rootReducer = combineReducers({
-  news: newsReducer,
-})
+import { baseApiSSR } from '@/api'
+import { newsReducer } from '@/service'
+import { configureStore } from '@reduxjs/toolkit'
+import { createWrapper } from 'next-redux-wrapper'
 
 export const store = configureStore({
-  reducer: rootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([baseApiSSR.middleware]),
+  reducer: {
+    [baseApiSSR.reducerPath]: baseApiSSR.reducer,
+    news: newsReducer,
+  },
 })
 
-export type AppDispatch = typeof store.dispatch
-export type AppRootStateType = ReturnType<typeof rootReducer>
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const makeStore = () => store
 
-export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
+export type AppStore = ReturnType<typeof makeStore>
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+
+export const wrapper = createWrapper<AppStore>(makeStore, { debug: true })

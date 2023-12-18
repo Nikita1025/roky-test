@@ -1,14 +1,15 @@
 import { newsApi } from '@/api'
+import { AsyncThunkConfig, DataResponse, News, RequestNews } from '@/service/types'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { AsyncThunkConfig, News, ResponseNews } from './types'
-
 interface newsState {
-  news?: News[]
+  news: News[]
+  status: 'loading' | 'successfully'
 }
 
 const initialState: newsState = {
   news: [],
+  status: 'successfully',
 }
 
 const slice = createSlice({
@@ -21,19 +22,29 @@ const slice = createSlice({
   },
   initialState,
   name: 'news',
-  reducers: {},
+  reducers: {
+    setStatus: (state, action) => {
+      state.status = action.payload
+    },
+  },
 })
 
-export const getNewsTC = createAsyncThunk<any, string, AsyncThunkConfig>(
+export const getNewsTC = createAsyncThunk<DataResponse, RequestNews, AsyncThunkConfig>(
   'news/getNews',
-  async (search, { dispatch }) => {
+  async ({ currentPage, filters, search }, { dispatch }) => {
+    dispatch(setStatus('loading'))
     try {
-      const { response } = await newsApi.news(search)
+      const { response } = await newsApi.news({ currentPage, filters, search })
+
+      dispatch(setStatus('successfully'))
 
       return response
     } catch (e) {
-      console.log(e)
+      dispatch(setStatus('successfully'))
     }
   }
 )
+
+const { setStatus } = slice.actions
+
 export const newsReducer = slice.reducer

@@ -6,6 +6,7 @@ const nextConfig = {
         hostname: 'media.guim.co.uk',
         port: '',
         protocol: 'https',
+        pathname: '/media.guim.co.uk/**',
       },
     ],
   },

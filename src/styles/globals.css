@@ -31,11 +31,6 @@ a:visited {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 100px;
-
   font-family: Inter, sans-serif;
   color: #fff;
 

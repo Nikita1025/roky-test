@@ -1,7 +1,5 @@
 .text,
 .default {
-  all: unset;
-
   cursor: pointer;
   user-select: none;
 
@@ -21,6 +19,7 @@
   text-decoration: none;
 
   background-color: #3ca779;
+  border: none;
   border-radius: 12px;
 
   transition: 0.3s;
@@ -53,47 +52,31 @@
   transition: 0.3s;
 }
 
-@media (width <= 768px) {
-  .unActiveProfile,
-  .unActive {
-    width: 50%;
+@media (width >= 300px) and (width <= 500px) {
+  .default {
     max-width: unset;
-    padding: 12px 0;
-    line-height: unset;
-  }
-
-  .activeProfile,
-  .active {
-    width: 50%;
-    max-width: unset;
-    padding: 12px 0;
-    line-height: unset;
-  }
-
-  .button-with-icon {
-    display: flex;
-    justify-content: space-between;
-
-    width: 93%;
-    padding: 8px 8px 8px 16px;
-
-    border-radius: 12px;
-  }
-
-  .vector {
-    width: 44px;
-    height: 44px;
-  }
-
-  .error:hover {
-    color: #df4343;
-    background: unset;
-  }
-
-  .error:active {
-    color: #fff;
-    background: rgb(187 46 46 / 81%);
-    border: 1px solid rgb(187 46 46 / 81%);
-    transition: 0.3s;
+    margin-bottom: 15px;
   }
 }
+
+/* @media (width >= 501px) and (width <= 768px) { */
+
+/*  .news_block { */
+
+/*    grid-template-columns: repeat(2, 1fr); */
+
+/*  } */
+
+/* } */
+
+/* @media (width <= 768px) { */
+
+/*  .default { */
+
+/*    max-width: unset; */
+
+/*    margin-bottom: 15px; */
+
+/*  } */
+
+/* } */
