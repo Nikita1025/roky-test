@@ -1,8 +1,7 @@
-import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-import { baseApiSSR } from '@/api/baseApiSSR'
-// eslint-disable-next-line import/namespace
-import { newsReducer } from '@/service/news-slice'
+import { baseApiSSR } from '@/api'
+import { newsReducer } from '@/service'
 import { configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 

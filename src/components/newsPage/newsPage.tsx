@@ -23,7 +23,7 @@ export const OneNewsPage = ({ data }: OneNewsPageType) => {
         </a>
       </div>
       <div className={s.content_block}>
-        <img className={s.image} src={fields.thumbnail} />
+        <img alt={'image'} className={s.image} src={fields.thumbnail} />
         <p className={s.start}>Make start</p>
         <p className={s.text}>{fields.bodyText}</p>
       </div>

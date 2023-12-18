@@ -1,6 +1,5 @@
 import baseApi, { apiKey } from '@/api/base-api'
 import { RequestNews, ResponseNews } from '@/service/types'
-import { AxiosResponse } from 'axios'
 
 export const newsApi = {
   async news({ currentPage, filters, search }: RequestNews) {

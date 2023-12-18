@@ -24,7 +24,11 @@ export const News = ({ id, image, time, title }: NewsType) => {
   return (
     <div className={s.container}>
       <div className={s.image_block}>
-        {image ? <img className={s.image} src={image} /> : <NoImage className={s.image} />}
+        {image ? (
+          <img alt={'image'} className={s.image} src={image} />
+        ) : (
+          <NoImage className={s.image} />
+        )}
       </div>
       <div className={s.content_block}>
         <div className={s.text_block}>
