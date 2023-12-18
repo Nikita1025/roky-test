@@ -57,6 +57,6 @@ export type News = {
 
 export type RequestNews = {
   currentPage: number
-  filters?: string
-  search?: string
+  filters: string
+  search: string
 }

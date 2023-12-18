@@ -31,7 +31,7 @@ const slice = createSlice({
 
 export const getNewsTC = createAsyncThunk<DataResponse, RequestNews, AsyncThunkConfig>(
   'news/getNews',
-  async ({ currentPage, filters, search }, { dispatch }) => {
+  async ({ currentPage, filters, search }, { dispatch, rejectWithValue }) => {
     dispatch(setStatus('loading'))
     try {
       const { response } = await newsApi.news({ currentPage, filters, search })
@@ -39,8 +39,10 @@ export const getNewsTC = createAsyncThunk<DataResponse, RequestNews, AsyncThunkC
       dispatch(setStatus('successfully'))
 
       return response
-    } catch (e) {
+    } catch (e: any) {
       dispatch(setStatus('successfully'))
+
+      return rejectWithValue(e)
     }
   }
 )

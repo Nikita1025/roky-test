@@ -1,2 +1,1 @@
-export { SelectBox } from './SelectBox'
-export type { SelectProps, Options } from './SelectBox'
+export { SelectBox } from './selectBox'
